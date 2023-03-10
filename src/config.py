@@ -3,6 +3,9 @@ from vkbottle.bot import BotLabeler
 import os
 
 
+allowed_prefixes = ('/', '!', '$')
+
+
 token = os.environ['AI_VKBOT_TOKEN']
 api = API(token)
 labeler = BotLabeler()

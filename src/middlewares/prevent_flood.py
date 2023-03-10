@@ -10,6 +10,9 @@ class PreventFloodMiddleware(BaseMiddleware[Message]):
     flood_warning = 'Слишком частые запросы. Подождите {} сек.'
 
     async def pre(self):
+        if self.event.text.startswith('$STOP$'):
+            return self.stop()
+
         if self.event.peer_id not in self.storage:
             self.storage.set(self.event.peer_id, time.monotonic())
         else:
