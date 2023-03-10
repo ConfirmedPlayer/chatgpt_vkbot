@@ -20,6 +20,6 @@ class PreventFloodMiddleware(BaseMiddleware[Message]):
                 await api.messages.send(peer_id=self.event.peer_id,
                                         message=self.flood_warning.format(seconds_left),
                                         random_id=0)
-                return self.stop()
+                self.stop()
             else:
                 self.storage.delete(self.event.peer_id)
